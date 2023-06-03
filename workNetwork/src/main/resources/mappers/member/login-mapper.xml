@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multi.mvc.login.model.mapper.LoginMapper">
+    <resultMap type="LoginMember" id="LoginResultMap">
+        <id property="member_no" 		column="member_no"/>
+        <result property="id" 			column="id"/>
+        <result property="password" 	column="password"/>
+        <result property="name" 		column="name"/>
+        <result property="email" 		column="email"/>
+        <result property="phone_number" 	column="phone_number"/>
+        <result property="address" 			column="address"/>
+        <result property="status" 			column="status"/>
+    </resultMap>
+    <select id="login" resultMap="LoginResultMap" parameterType="map">
+        SELECT member_no,id,password,name,email,phone_number,address,status
+        FROM member
+        WHERE id LIKE '%' AND password LIKE '%'
+        <if test="id != null">
+			AND id=#{id}
+		</if> 
+		<if test="password != null">
+			AND password=#{password}
+		</if> 
+    </select>
+
+</mapper>

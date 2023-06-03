@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multi.mvc.news.model.mapper.NewsMapper">
+	<resultMap type="Articles" id="ArticlesResultMap">
+		<result property="title" 	column="title"/>
+		<result property="date" 	column="date"/>
+		<result property="url" 	column="url"/>
+	</resultMap>
+	<select id="searchArticles" resultMap="ArticlesResultMap" parameterType="map">
+		SELECT title, date, url  
+		FROM news 
+		WHERE url LIKE "https%" 
+		<if test="preDate != null">
+			AND (date&gt;='${preDate}' and date&lt;='${nextDate}')
+		</if>
+		<if test="v != null">
+			AND title LIKE '%${v}%'
+		</if> 
+		<if test='keyword != null'>
+			AND (
+				<if test="vsixnine != null">
+					<if test="last.equals('vsixnine')">
+						keyword='${vsixnine}'
+					</if>
+					<if test="!last.equals('vsixnine')">
+						keyword='${vsixnine}' OR
+					</if>
+				</if> 
+				<if test="vfee != null">
+					<if test="last.equals('vfee')">
+						keyword='${vfee}'
+					</if>
+					<if test="!last.equals('vfee')">
+						keyword='${vfee}' OR
+					</if>
+				</if> 
+				<if test="vhire != null">
+					<if test="last.equals('vhire')">
+						keyword='${vhire}'
+					</if>
+					<if test="!last.equals('vhire')">
+						keyword='${vhire}' OR
+					</if>
+				</if>  
+			)
+		</if>
+		order by date 
+		LIMIT ${limit} OFFSET ${offset}
+	</select>
+	<select id="searchArticlesCount" resultMap="ArticlesResultMap" parameterType="map">
+		SELECT title, date, url  
+		FROM news 
+		WHERE url LIKE "https%" 
+		<if test="preDate != null">
+			AND (date&gt;='${preDate}' and date&lt;='${nextDate}')
+		</if>
+		<if test="v != null">
+			AND title LIKE '%${v}%'
+		</if> 
+		<if test='keyword != null'>
+			AND (
+				<if test="vsixnine != null">
+					<if test="last.equals('vsixnine')">
+						keyword='${vsixnine}'
+					</if>
+					<if test="!last.equals('vsixnine')">
+						keyword='${vsixnine}' OR
+					</if>
+				</if> 
+				<if test="vfee != null">
+					<if test="last.equals('vfee')">
+						keyword='${vfee}'
+					</if>
+					<if test="!last.equals('vfee')">
+						keyword='${vfee}' OR
+					</if>
+				</if> 
+				<if test="vhire != null">
+					<if test="last.equals('vhire')">
+						keyword='${vhire}'
+					</if>
+					<if test="!last.equals('vhire')">
+						keyword='${vhire}' OR
+					</if>
+				</if>  
+			)
+		</if>
+		order by date 
+	</select>
+</mapper>
