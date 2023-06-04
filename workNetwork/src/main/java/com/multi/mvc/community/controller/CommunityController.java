@@ -42,7 +42,7 @@ public class CommunityController {
 		
 		List<CommunityList> searchPost = service.communityList(pageInfo, searchMap);
 		
-		model.addAttribute("res","");
+		model.addAttribute("res","communityDepartment=&communityTitle=&");
 		model.addAttribute("count",cnt_sql);
 		model.addAttribute("searchPost", searchPost);
 		model.addAttribute("pageInfo", pageInfo); // 페이지
@@ -56,15 +56,22 @@ public class CommunityController {
 		Map<String, String> searchMap = new HashMap<String, String>();
 		String res="";
 		
-		if(!param.get("community_department").equals("")) {
-			searchMap.put("communityDepartment", param.get("community_department"));
-			res+="communityDepartment="+param.get("community_department")+"&";
+		try {
+			if(!param.get("community_department").equals("")) {
+				searchMap.put("communityDepartment", param.get("community_department"));
+				res+="communityDepartment="+param.get("community_department")+"&";
+			}
+		} catch (Exception e) {
+			res+="communityDepartment=&";
 		}
-		if(!param.get("community_title").equals("")) {
-			searchMap.put("communityTitle", param.get("community_title"));
-			res+="communityTitle="+param.get("community_title")+"&";
+		try {
+			if(!param.get("community_title").equals("")) {
+				searchMap.put("communityTitle", param.get("community_title"));
+				res+="communityTitle="+param.get("community_title")+"&";
+			}
+		} catch (Exception e) {
+			res+="communityTitle=&";
 		}
-		
 		
 		int page=1;
 		try {
