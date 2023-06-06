@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
+ 
 <jsp:include page="/WEB-INF/views/common/header_news.jsp">
 	<jsp:param name="title" value="| 뉴스 검색" />
 </jsp:include>

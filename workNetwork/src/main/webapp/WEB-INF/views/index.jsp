@@ -74,11 +74,12 @@
         </div>
       </div>
     </div>
-
+<% Integer member_no = (Integer) request.getSession().getAttribute("member_no"); %>
 <!-- 중앙 네비바 -->
     <section class="pt-4 pb-6">
       <div class="container">
         <div class="row" style="margin-top: 70px;  margin-bottom: -100px;">
+            <% if (member_no != null) { %>
           <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0" style="text-align: center;">
             <div class="px-0 pe-lg-3">
               <a href="${path}/workNetwork/my_page"><div class="icon-rounded mb-3 bg-teal">
@@ -89,6 +90,24 @@
               <h3 class="h6 text-uppercase" style="font-size: 22px;">나의 근무 시간</h3>
             </div>
           </div>
+            <% } else { %>
+
+            <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0" style="text-align: center;">
+                <div class="px-0 pe-lg-3">
+                    <a href="${path}/workNetwork/login" onclick="showAlert()"><div class="icon-rounded mb-3 bg-teal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                        </svg>
+                    </div></a>
+                    <h3 class="h6 text-uppercase" style="font-size: 22px;">나의 근무 시간</h3>
+                </div>
+            </div>
+            <% } %>
+            <script>
+                function showAlert() {
+                    alert("로그인이 필요합니다");
+                }
+            </script>
           <div class="col-sm-6 col-lg-3 mb-3 mb-lg-0" style="text-align: center;">
             <div class="px-0 pe-lg-3">
               <a href="${path}/workNetwork/community"><div class="icon-rounded mb-3 bg-cyan">
@@ -133,11 +152,12 @@
             <p class="subtitle " style="color:green; font-size: 20px;">한 눈에 보기</p>
             <h2 class="mb-md-0" style="font-size: 35px;">나의 근무 시간</h2>
           </div>
-          <div class="col-md-4 d-md-flex align-items-center justify-content-end"><a class="text-muted text-sm" href="${path}/workNetwork/my_page" style="font-size: 35px;">list<i class="fas fa-angle-double-right ms-2"></i></a></div>
         </div>
+          <% if (member_no != null) { %>
         <div style="width: 100%; height: 350px; display: flex; justify-content: space-between; margin-top: -100px;">
           <div style="display: inline-block; width: 30%;">
             <!-- 나의 근무시간에서 어떤 정보를 확인할 수 있는지 설명할 것 -->
+
             <div style="width: 90%; height: 70%; margin-left: 10%; margin-top: 20%; text-align: right;">
               <h5 style="color: black; text-align: left; font-weight: 900;">요일별 근무 시간</h5>
               <p style="color: rgb(112, 112, 112); font-size: 14px; text-align: left;">우측의 <span style="font-weight: 900;">WEEK</span> 탭을 눌러 주간 평균 근로 시간과 일별 근무 시간 그래프를 확인하세요.</p>
@@ -151,7 +171,7 @@
             <!-- <div style="height: 20%; text-align: center; margin-bottom: 8%;"> -->
               <!-- 그래프의 제목, 값(hidden)이 들어갈 자리 -->
               <!-- <h3 name="g_title" id="g_title" style="background-color: yellow; padding: 5px; margin-top: 20px;">주간 근무 시간</h3>
-              <div name="g_value" style="display: none;"></div> 
+              <div name="g_value" style="display: none;"></div>
             </div> -->
 <!-- chart 1-1 -->
             <canvas id="myChart3" style="width: 100%; height: 100%; display: block; background-color: white;"></canvas>
@@ -277,6 +297,10 @@
                   </svg></span></a></span>
               </div>
             </div>
+              <% } else { %>
+              <h5 style="color: black; text-align: left; font-weight: 900; font-size: 22px; color:rgb(227, 72, 48);">나의 근무시간은 로그인 후 확인하실 수 있습니다.</h5>
+
+              <% } %>
           </div>
           <script>
             document.getElementById('tb1').addEventListener('click',select1);
@@ -534,7 +558,7 @@
 				          			<tr>
 			          			</c:if>
 								      <td class="td1">${comV.num}</td>
-								      <td class="td2">${comV.department}</td>
+								      <td class="td2">${comV.job}</td>
 								      <td class="td3" style="text-align: left;">${comV.title}</td>
 								      <td class="td4">${comV.name}</td>
 								      <td class="td5">${comV.create_date}</td>
@@ -552,7 +576,7 @@
             <p class="subtitle " style="color:green; font-size: 20px;">HOT</p>
             <h2 class="mb-md-0" style="font-size: 35px; width: 130%;">노동법 FAQ</h2>
           </div>
-          <div class="col-md-2" style="display: inline-block; text-align: right; margin-bottom: 32px;"><a class="text-muted text-sm" href="${path}/workNetwork/faq">list<i class="fas fa-angle-double-right ms-2"></i></a></div>
+          <div class="col-md-2" style="display: inline-block; text-align: right; margin-bottom: 32px;"><a class="text-muted text-sm" href="${path}/workNetwork/searchFaq">list<i class="fas fa-angle-double-right ms-2"></i></a></div>
           <div style="background-color: white; width: 100%; border-radius: 10px; height: 350px; box-shadow: 0 0 15px #bcbcbc;">
             <div style="width: 100%; overflow: auto;"><table style="width: 100%; white-space: nowrap;">
               <thead style="text-align: center;">

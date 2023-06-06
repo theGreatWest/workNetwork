@@ -21,13 +21,13 @@
 
 <!-- 커뮤니티 -->
 	<resultMap type="Community" id="CommunityResultMap">
-		<result property="department" 	column="department"/>
+		<result property="job" 	column="job"/>
 		<result property="title" 		column="title"/>
 		<result property="name" 		column="name"/>
 		<result property="create_date" 	column="create_date"/>
 	</resultMap>
 	<select id="select5Community" resultMap="CommunityResultMap">
-		SELECT mi.department, b.title, m.name, b.create_date 
+		SELECT mi.job, b.title, m.name, b.create_date
 		FROM community b
 		INNER JOIN member m
 		ON m.member_no = b.member_no

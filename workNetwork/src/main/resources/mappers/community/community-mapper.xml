@@ -3,7 +3,7 @@
 
 <mapper namespace="com.multi.mvc.community.model.mapper.CommunityMapper">
 	<resultMap type="CommunityList" id="CommunityListResultMap">
-		<result property="department" 	column="department"/>
+		<result property="job" 	column="job"/>
 		<result property="title" 		column="title"/>
 		<result property="content" 		column="content"/>
 		<result property="name" 		column="name"/>
@@ -20,7 +20,7 @@
 	
 <!-- 커뮤니티 리스트 -->
 	<select id="communityList" resultMap="CommunityListResultMap" parameterType="map">
-		SELECT mi.department, b.title, b.content, m.name, b.create_date, b.views , board_no 
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
 		FROM community b
 		INNER JOIN member m
 		ON m.member_no = b.member_no
@@ -28,7 +28,7 @@
 		ON m.member_no = mi.member_no
 		WHERE b.status='공개'
 		<if test="communityDepartment != null">
-			AND mi.department = '${communityDepartment}'
+			AND mi.job = '${communityDepartment}'
 		</if> 
 		<if test="communityTitle != null">
 			AND b.title LIKE '%${communityTitle}%'
@@ -39,7 +39,7 @@
 	
 <!-- 커뮤니티 리스트: 검색 -->
 	<select id="searchList" resultMap="CommunityListResultMap" parameterType="map">
-		SELECT mi.department, b.title, b.content, m.name, b.create_date, b.views , board_no 
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
 		FROM community b
 		INNER JOIN member m
 		ON m.member_no = b.member_no
@@ -47,7 +47,7 @@
 		ON m.member_no = mi.member_no
 		WHERE b.status='공개'
 		<if test="communityDepartment != null">
-			AND mi.department = '${communityDepartment}'
+			AND mi.job = '${communityDepartment}'
 		</if> 
 		<if test="communityTitle != null">
 			AND b.title LIKE '%${communityTitle}%'
@@ -58,7 +58,7 @@
 	
 <!-- 커뮤니티 리스트: 검색 개수 -->
 	<select id="searchListCount" resultMap="CommunityListResultMap" parameterType="map">
-		SELECT mi.department, b.title, b.content, m.name, b.create_date, b.views , board_no 
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
 		FROM community b
 		INNER JOIN member m
 		ON m.member_no = b.member_no
@@ -66,7 +66,7 @@
 		ON m.member_no = mi.member_no
 		WHERE b.status='공개'
 		<if test="communityDepartment != null">
-			AND mi.department = '${communityDepartment}'
+			AND mi.job = '${communityDepartment}'
 		</if> 
 		<if test="communityTitle != null">
 			AND b.title LIKE '%${communityTitle}%'
@@ -76,7 +76,7 @@
 	
 <!-- 커뮤니티 개수 -->
 	<select id="communityListCount" resultMap="CommunityListResultMap">
-		SELECT mi.department, b.title, b.content, m.name, b.create_date, b.views , board_no 
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
 		FROM community b
 		INNER JOIN member m
 		ON m.member_no = b.member_no
@@ -123,4 +123,5 @@
 		INSERT INTO reply 
 		VALUES(NULL, '${board_no}', '${member_no}', '${reply}','${create_date}','공개')
 	</insert>
+
 </mapper>

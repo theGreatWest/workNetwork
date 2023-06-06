@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class KaKaoController {
+public class KaKaoController { 
 
 	@RequestMapping("/kakaoMap1")
 	String kakaoMap1(Model model) {

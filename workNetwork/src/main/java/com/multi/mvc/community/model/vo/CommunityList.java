@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommunityList {
-	private String department;
+	private String job;
 	private String title;
 	private String content;
 	private String name;

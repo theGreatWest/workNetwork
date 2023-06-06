@@ -34,23 +34,21 @@ public class IndexService {
 	public List<StatisticsAge> age(){
 		return mapper.age();
 	}
-	
-	public List<Faq> faq(){
-		return mapper.faq();
+
+	public List<Faq> faq(){return mapper.faq();}
+
+	public List<Week> week(Integer member_no){
+		return mapper.week(member_no);
 	}
-	
-	public List<Week> week(){
-		return mapper.week();
+
+	public List<Month> month(Integer member_no){
+		return mapper.month(member_no);
 	}
-	
-	public List<Month> month(){
-		return mapper.month();
+
+	public List<Year> year(Integer member_no){
+		return mapper.year(member_no);
 	}
-	
-	public List<Year> year(){
-		return mapper.year();
-	}
-	
+
 	public List<SearchNews> sn(Map<String, String> searchMap){
 		return mapper.searchNewsCount(searchMap);
 	}

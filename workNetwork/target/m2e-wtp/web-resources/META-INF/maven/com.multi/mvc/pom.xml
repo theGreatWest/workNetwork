@@ -7,7 +7,7 @@
 	<name>03_SpringMVC2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties>
+	<properties> 
 		<java-version>11</java-version>
 		<org.springframework-version>5.2.12.RELEASE</org.springframework-version>
 		<org.springsecurity-version>5.3.9.RELEASE</org.springsecurity-version>

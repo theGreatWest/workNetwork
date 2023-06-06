@@ -42,53 +42,57 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home1(Locale locale, Model model, HttpSession session) {
-		
+
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
+		Integer member_no = (Integer) session.getAttribute("member_no");
+
 // 뉴스 기사 모아보기 
 		List<News> newsList = service.select5News();
 		List<Integer> compSame = new ArrayList<Integer>();
-		int cnt=0;
-		int i=0;
-		while(true) {
-			if(cnt==5) {break;}
-			int tmp = (int)(Math.random()*47);
-			if(compSame.contains(tmp)){
+		int cnt = 0;
+		int i = 0;
+		while (true) {
+			if (cnt == 5) {
+				break;
+			}
+			int tmp = (int) (Math.random() * 47);
+			if (compSame.contains(tmp)) {
 				continue;
-			}else {
-				newsList.get(i++).setImg("resources/img/news/"+tmp+".png");
+			} else {
+				newsList.get(i++).setImg("resources/img/news/" + tmp + ".png");
 				compSame.add(tmp);
 				cnt++;
 			}
 		}
 		model.addAttribute("newsList", newsList);
-		
+
 // 커뮤니티 
 		List<Community> communityList = service.select5Community();
-		for(i=1;i<=5;i++) {
-			communityList.get(i-1).setNum(i);
+		for (i = 1; i <= 5; i++) {
+			communityList.get(i - 1).setNum(i);
 		}
-		model.addAttribute("communityList",communityList);
+		model.addAttribute("communityList", communityList);
 // 통계자료: 출생아
 		List<StatisticsChild> child = service.child();
 		double[] m = new double[6];
 		double[] w = new double[6];
 		double[] total = new double[6];
-		cnt=0;
-		for(i=0;i<child.size();i++) {
+		cnt = 0;
+		for (i = 0; i < child.size(); i++) {
 			double tmp = child.get(i).getUseDate();
-			if(child.get(i).getGender().equals("부")) {
-				m[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(child.get(i).getGender().equals("모")) {
-				w[cnt]=Math.round(tmp * 100.0) / 100.0;
-				
-				double tot = ((tmp+child.get(i-1).getUseDate())*13)/26;
-				total[cnt++]=Math.round(tot * 100.0) / 100.0;
+			if (child.get(i).getGender().equals("부")) {
+				m[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (child.get(i).getGender().equals("모")) {
+				w[cnt] = Math.round(tmp * 100.0) / 100.0;
+
+				double tot = ((tmp + child.get(i - 1).getUseDate()) * 13) / 26;
+				total[cnt++] = Math.round(tot * 100.0) / 100.0;
 			}
 		}
-		model.addAttribute("m",Arrays.toString(m));
-		model.addAttribute("w",Arrays.toString(w));
-		model.addAttribute("total",Arrays.toString(total));
+		model.addAttribute("m", Arrays.toString(m));
+		model.addAttribute("w", Arrays.toString(w));
+		model.addAttribute("total", Arrays.toString(total));
 // 통계자료: 규모별
 		List<StatisticsScale> scale = service.scale();
 		double[] small = new double[5];
@@ -96,26 +100,26 @@ public class HomeController {
 		double[] thirty = new double[5];
 		double[] threehundred = new double[5];
 		double[] overthreehundred = new double[5];
-		cnt=0;
-		for(i=0;i<scale.size();i++) {
+		cnt = 0;
+		for (i = 0; i < scale.size(); i++) {
 			double tmp = scale.get(i).getUseDate();
-			if(scale.get(i).getWork_type().equals("5인미만")) {
-				small[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(scale.get(i).getWork_type().equals("5~29인")) {
-				twentynine[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(scale.get(i).getWork_type().equals("30~299인")) {
-				thirty[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(scale.get(i).getWork_type().equals("300인미만")) {
-				threehundred[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(scale.get(i).getWork_type().equals("300인이상")) {
-				overthreehundred[cnt++]=Math.round(tmp * 100.0) / 100.0;
+			if (scale.get(i).getWork_type().equals("5인미만")) {
+				small[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (scale.get(i).getWork_type().equals("5~29인")) {
+				twentynine[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (scale.get(i).getWork_type().equals("30~299인")) {
+				thirty[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (scale.get(i).getWork_type().equals("300인미만")) {
+				threehundred[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (scale.get(i).getWork_type().equals("300인이상")) {
+				overthreehundred[cnt++] = Math.round(tmp * 100.0) / 100.0;
 			}
 		}
-		model.addAttribute("small",Arrays.toString(small));
-		model.addAttribute("twentynine",Arrays.toString(twentynine));
-		model.addAttribute("thirty",Arrays.toString(thirty));
-		model.addAttribute("threehundred",Arrays.toString(threehundred));
-		model.addAttribute("overthreehundred",Arrays.toString(overthreehundred));
+		model.addAttribute("small", Arrays.toString(small));
+		model.addAttribute("twentynine", Arrays.toString(twentynine));
+		model.addAttribute("thirty", Arrays.toString(thirty));
+		model.addAttribute("threehundred", Arrays.toString(threehundred));
+		model.addAttribute("overthreehundred", Arrays.toString(overthreehundred));
 // 통계자료: 나이대 
 		List<StatisticsAge> age = service.age();
 		double[] age20 = new double[5];
@@ -124,147 +128,162 @@ public class HomeController {
 		double[] age50 = new double[5];
 		double[] age60 = new double[5];
 		double[] totalAge = new double[5];
-		cnt=0;
-		for(i=0;i<age.size();i++) {
+		cnt = 0;
+		for (i = 0; i < age.size(); i++) {
 			double tmp = age.get(i).getUseDate();
-			if(age.get(i).getAge().equals("29세이하")) {
-				age20[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(age.get(i).getAge().equals("30~39세")) {
-				age30[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(age.get(i).getAge().equals("40~49세")) {
-				age40[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(age.get(i).getAge().equals("50~59세")) {
-				age50[cnt]=Math.round(tmp * 100.0) / 100.0;
-			}else if(age.get(i).getAge().equals("60세이상")) {
-				age60[cnt]=Math.round(tmp * 100.0) / 100.0;
-				
-				double tot = ((tmp+age.get(i-1).getUseDate()+age.get(i-2).getUseDate()+age.get(i-3).getUseDate()+age.get(i-4).getUseDate())*2)/10;
-				totalAge[cnt++]=Math.round(tot * 100.0) / 100.0;
+			if (age.get(i).getAge().equals("29세이하")) {
+				age20[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (age.get(i).getAge().equals("30~39세")) {
+				age30[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (age.get(i).getAge().equals("40~49세")) {
+				age40[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (age.get(i).getAge().equals("50~59세")) {
+				age50[cnt] = Math.round(tmp * 100.0) / 100.0;
+			} else if (age.get(i).getAge().equals("60세이상")) {
+				age60[cnt] = Math.round(tmp * 100.0) / 100.0;
+
+				double tot = ((tmp + age.get(i - 1).getUseDate() + age.get(i - 2).getUseDate() + age.get(i - 3).getUseDate() + age.get(i - 4).getUseDate()) * 2) / 10;
+				totalAge[cnt++] = Math.round(tot * 100.0) / 100.0;
 			}
 		}
-		model.addAttribute("ageTwo",Arrays.toString(age20));
-		model.addAttribute("ageThree",Arrays.toString(age30));
-		model.addAttribute("ageFour",Arrays.toString(age40));
-		model.addAttribute("ageFive",Arrays.toString(age50));
-		model.addAttribute("ageSix",Arrays.toString(age60));
-		model.addAttribute("totalAge",Arrays.toString(totalAge));
+		model.addAttribute("ageTwo", Arrays.toString(age20));
+		model.addAttribute("ageThree", Arrays.toString(age30));
+		model.addAttribute("ageFour", Arrays.toString(age40));
+		model.addAttribute("ageFive", Arrays.toString(age50));
+		model.addAttribute("ageSix", Arrays.toString(age60));
+		model.addAttribute("totalAge", Arrays.toString(totalAge));
 // FAQ
 		List<Faq> faq = service.faq();
-		for(i=1;i<=5;i++) {
-			faq.get(i-1).setNum(i);
+		for (i = 1; i <= 5; i++) {
+			faq.get(i - 1).setNum(i);
 		}
-		model.addAttribute("faqList",faq);
-		
-// 마이페이지 : 주간 
-		List<Week> week = service.week();
-		double[] workHourWeek = new double[7];
-		double weekTotalHour=0.0;
-		double weekTotalOverHour=0.0;
-		int resultOver;
-		
-		for(i=0;i<week.size();i++) {
-			double tmp = week.get(i).getUseDate();
-			weekTotalHour+=tmp;
-			if(tmp>8.0) {weekTotalOverHour+=(tmp-8.0);}
-			
-			if(week.get(i).getWeek().equals("월")) {
-				workHourWeek[0]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("화")) {
-				workHourWeek[1]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("수")) {
-				workHourWeek[2]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("목")) {
-				workHourWeek[3]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("금")) {
-				workHourWeek[4]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("토")) {
-				workHourWeek[5]=Math.round(tmp * 100.0) / 100.0;
-			}else if(week.get(i).getWeek().equals("일")) {
-				workHourWeek[6]=Math.round(tmp * 100.0) / 100.0;
+		model.addAttribute("faqList", faq);
+
+
+		if (member_no != null) {
+			// 마이페이지 : 주간
+			List<Week> week = service.week(member_no);
+			double[] workHourWeek = new double[7];
+			double weekTotalHour = 0.0;
+			double weekTotalOverHour = 0.0;
+			int resultOver;
+
+			for (i = 0; i < week.size(); i++) {
+				double tmp = week.get(i).getUseDate();
+				weekTotalHour += tmp;
+				if (tmp > 8.0) {
+					weekTotalOverHour += (tmp - 8.0);
+				}
+
+				if (week.get(i).getWeek().equals("월")) {
+					workHourWeek[0] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("화")) {
+					workHourWeek[1] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("수")) {
+					workHourWeek[2] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("목")) {
+					workHourWeek[3] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("금")) {
+					workHourWeek[4] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("토")) {
+					workHourWeek[5] = Math.round(tmp * 100.0) / 100.0;
+				} else if (week.get(i).getWeek().equals("일")) {
+					workHourWeek[6] = Math.round(tmp * 100.0) / 100.0;
+				}
 			}
-		}
-		if(weekTotalHour>52) {resultOver=1;}
-		else {resultOver=0;}
-		
-		model.addAttribute("week",Arrays.toString(workHourWeek));
-		model.addAttribute("resultOver",resultOver);
-		model.addAttribute("weekTotalHour", Math.round(weekTotalHour/ 7.0 * 100.0) / 100.0);
-		model.addAttribute("weekTotalOverHour", Math.round(weekTotalOverHour * 100.0) / 100.0);
-		
+			if (weekTotalHour > 52) {
+				resultOver = 1;
+			} else {
+				resultOver = 0;
+			}
+
+			model.addAttribute("week", Arrays.toString(workHourWeek));
+			model.addAttribute("resultOver", resultOver);
+			model.addAttribute("weekTotalHour", Math.round(weekTotalHour / 7.0 * 100.0) / 100.0);
+			model.addAttribute("weekTotalOverHour", Math.round(weekTotalOverHour * 100.0) / 100.0);
+
 // 마이페이지 : 월간
-		List<Month> month = service.month();
-		double[] workHourMonth = new double[12];
-		double monthTotalHour=0.0;
-		double monthTotalOverHour=0.0;
-		
-		for(i=0;i<month.size();i++) {
-			double tmp = month.get(i).getUseDate();
-			monthTotalHour+=tmp;
-			if(tmp>8.0) {monthTotalOverHour+=(tmp-8.0);}
-			
-			if(month.get(i).getMonth().equals("1")) {
-				workHourMonth[0]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("2")) {
-				workHourMonth[1]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("3")) {
-				workHourMonth[2]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("4")) {
-				workHourMonth[3]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("5")) {
-				workHourMonth[4]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("6")) {
-				workHourMonth[5]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("7")) {
-				workHourMonth[6]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("8")) {
-				workHourMonth[7]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("9")) {
-				workHourMonth[8]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("10")) {
-				workHourMonth[9]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("11")) {
-				workHourMonth[10]=Math.round(tmp * 100.0) / 100.0;
-			}else if(month.get(i).getMonth().equals("12")) {
-				workHourMonth[11]=Math.round(tmp * 100.0) / 100.0;
+			List<Month> month = service.month(member_no);
+			double[] workHourMonth = new double[12];
+			double monthTotalHour = 0.0;
+			double monthTotalOverHour = 0.0;
+
+			for (i = 0; i < month.size(); i++) {
+				double tmp = month.get(i).getUseDate();
+				monthTotalHour += tmp;
+				if (tmp > 8.0) {
+					monthTotalOverHour += (tmp - 8.0);
+				}
+
+				if (month.get(i).getMonth().equals("1")) {
+					workHourMonth[0] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("2")) {
+					workHourMonth[1] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("3")) {
+					workHourMonth[2] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("4")) {
+					workHourMonth[3] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("5")) {
+					workHourMonth[4] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("6")) {
+					workHourMonth[5] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("7")) {
+					workHourMonth[6] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("8")) {
+					workHourMonth[7] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("9")) {
+					workHourMonth[8] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("10")) {
+					workHourMonth[9] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("11")) {
+					workHourMonth[10] = Math.round(tmp * 100.0) / 100.0;
+				} else if (month.get(i).getMonth().equals("12")) {
+					workHourMonth[11] = Math.round(tmp * 100.0) / 100.0;
+				}
 			}
-		}
-		model.addAttribute("month",Arrays.toString(workHourMonth));
-		model.addAttribute("monthTotalHour", Math.round(monthTotalHour / 12.0 * 100.0) / 100.0);
-		model.addAttribute("monthTotalOverHour", Math.round(monthTotalOverHour * 100.0) / 100.0);
-		
+			model.addAttribute("month", Arrays.toString(workHourMonth));
+			model.addAttribute("monthTotalHour", Math.round(monthTotalHour / 12.0 * 100.0) / 100.0);
+			model.addAttribute("monthTotalOverHour", Math.round(monthTotalOverHour * 100.0) / 100.0);
+
 // 마이페이지 : 연간
-		List<Year> year = service.year();
-		double[] workHourYear = new double[7];
-		double yearTotalHour=0.0;
-		double yearTotalOverHour=0.0;
-		
-		for(i=0;i<year.size();i++) {
-			double tmp = year.get(i).getUseDate();
-			yearTotalHour+=tmp;
-			if(tmp>8.0) {yearTotalOverHour+=(tmp-8.0);}
-			
-			if(year.get(i).getYear().equals("2017")) {
-				workHourYear[0]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2018")) {
-				workHourYear[1]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2019")) {
-				workHourYear[2]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2020")) {
-				workHourYear[3]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2021")) {
-				workHourYear[4]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2022")) {
-				workHourYear[5]=Math.round(tmp * 100.0) / 100.0;
-			}else if(year.get(i).getYear().equals("2023")) {
-				workHourYear[6]=Math.round(tmp * 100.0) / 100.0;
+			List<Year> year = service.year(member_no);
+			double[] workHourYear = new double[7];
+			double yearTotalHour = 0.0;
+			double yearTotalOverHour = 0.0;
+
+			for (i = 0; i < year.size(); i++) {
+				double tmp = year.get(i).getUseDate();
+				yearTotalHour += tmp;
+				if (tmp > 8.0) {
+					yearTotalOverHour += (tmp - 8.0);
+				}
+
+				if (year.get(i).getYear().equals("2017")) {
+					workHourYear[0] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2018")) {
+					workHourYear[1] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2019")) {
+					workHourYear[2] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2020")) {
+					workHourYear[3] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2021")) {
+					workHourYear[4] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2022")) {
+					workHourYear[5] = Math.round(tmp * 100.0) / 100.0;
+				} else if (year.get(i).getYear().equals("2023")) {
+					workHourYear[6] = Math.round(tmp * 100.0) / 100.0;
+				}
 			}
+			model.addAttribute("year", Arrays.toString(workHourYear));
+			model.addAttribute("yearTotalHour", Math.round(yearTotalHour / 7.0 * 100.0) / 100.0);
+			model.addAttribute("yearTotalOverHour", Math.round(yearTotalOverHour * 100.0) / 100.0);
+
+			return "index";
 		}
-		model.addAttribute("year",Arrays.toString(workHourYear));
-		model.addAttribute("yearTotalHour", Math.round(yearTotalHour / 7.0 * 100.0) / 100.0);
-		model.addAttribute("yearTotalOverHour", Math.round(yearTotalOverHour * 100.0) / 100.0);
-		
 		return "index";
 	}
+
+
 	
 	public String changeValueNews(String v) {
 		String real=null;

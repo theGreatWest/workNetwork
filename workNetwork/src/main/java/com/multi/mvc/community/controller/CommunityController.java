@@ -21,6 +21,8 @@ import com.multi.mvc.news.model.vo.Articles;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpSession;
+
 @Slf4j
 @Controller
 public class CommunityController {
@@ -98,7 +100,7 @@ public class CommunityController {
 	}
 	// 커뮤니티 : 글 쓰기
 	@RequestMapping("/workNetwork/writesuccess")
-	public String write2(Model model, @RequestParam Map<String, String> param) {
+	public String write2(Model model, @RequestParam Map<String, String> param, HttpSession session) {
 		Map<String, String> searchMap = new HashMap<String, String>();
 		
 		String create_date = LocalDate.now().toString();
@@ -112,16 +114,15 @@ public class CommunityController {
 		String renameed_filename="None";
 		
 		String views = "0";
-		
-		String member_no = "1"; // 진욱님께서 수정해주셔야 할 부분
-		// 직종 처리하는 부분도 수정해주세요(param.get("department);)
-		
+
+		Integer member_no = (Integer) session.getAttribute("member_no");
+
 		searchMap.put("create_date", create_date);
 		searchMap.put("status", status);
 		searchMap.put("original_filename", original_filename);
 		searchMap.put("renameed_filename", renameed_filename);
 		searchMap.put("views", views);
-		searchMap.put("member_no", member_no);
+		searchMap.put("member_no", String.valueOf(member_no));
 		searchMap.put("title", param.get("title"));
 		searchMap.put("content", param.get("content"));
 		
@@ -183,7 +184,7 @@ public class CommunityController {
 	
 // 커뮤니티 : 댓글 쓰기
 	@RequestMapping("/workNetwork/replyForm")
-	public String replyForm(Model model, @RequestParam Map<String, String> param) {
+	public String replyForm(Model model, @RequestParam Map<String, String> param, HttpSession session) {
 		Map<String, String> searchMap = new HashMap<String, String>();
 		
 		model.addAttribute("title",param.get("title"));
@@ -191,15 +192,15 @@ public class CommunityController {
 		model.addAttribute("name",param.get("name"));
 		model.addAttribute("create_date",param.get("create_date"));
 		model.addAttribute("board_no",param.get("board_no"));
-		model.addAttribute("department",param.get("department"));
+		model.addAttribute("job",param.get("job"));
 		model.addAttribute("views",param.get("views"));
 
+		Integer member_no = (Integer) session.getAttribute("member_no");
 //		회원번호 찾기
-		String member_no = "2"; 		// 로그인 된 회원의 번호를 가져올 수 있도록 수정해주세요
 		
 //		댓글 입력
 		searchMap.put("board_no", param.get("board_no"));
-		searchMap.put("member_no", member_no);
+		searchMap.put("member_no", String.valueOf(member_no));
 		searchMap.put("reply", param.get("reply_content"));
 		searchMap.put("create_date", LocalDate.now().toString());
 		service.reply(searchMap);

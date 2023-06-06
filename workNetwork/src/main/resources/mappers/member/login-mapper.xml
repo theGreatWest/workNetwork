@@ -16,13 +16,13 @@
     <select id="login" resultMap="LoginResultMap" parameterType="map">
         SELECT member_no,id,password,name,email,phone_number,address,status
         FROM member
-        WHERE id LIKE '%' AND password LIKE '%'
-        <if test="id != null">
-			AND id=#{id}
-		</if> 
-		<if test="password != null">
-			AND password=#{password}
-		</if> 
+        WHERE 1=1
+        <if test="email != null">
+            AND email = #{email}
+        </if>
+        <if test="password != null">
+            AND password = #{password}
+        </if>
     </select>
 
 </mapper>

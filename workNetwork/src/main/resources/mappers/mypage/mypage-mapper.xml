@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multi.mvc.my_page.model.mapper.MypageMapper">
+    <resultMap type="SignupMember" id="MemberResultMap">
+        <id property="member_no" 		column="member_no"/>
+        <result property="id" 			column="id"/>
+        <result property="password" 	column="password"/>
+        <result property="name" 		column="name"/>
+        <result property="email" 		column="email"/>
+        <result property="phone_number" 	column="phone_number"/>
+        <result property="address" 			column="address"/>
+        <result property="status" 			column="status"/>
+        <result property="signupDate" 			column="sign up date"/>
+    </resultMap>
+    <select id="selectMember" resultMap="MemberResultMap" parameterType="map">
+        SELECT *
+        FROM member
+        WHERE member_no = #{member_no}
+    </select>
+
+    <resultMap type="Member_info" id="Member_infoResultMap">
+        <id property="member_no" 		column="member_no"/>
+        <result property="gender" 			column="gender"/>
+        <result property="age" 	column="age"/>
+        <result property="company_name" 		column="company_name"/>
+        <result property="department" 		column="department"/>
+        <result property="job" 	column="job"/>
+        <result property="position" 			column="position"/>
+        <result property="worker_type" 			column="worker_type"/>
+    </resultMap>
+    <select id="selectMember_info" resultMap="Member_infoResultMap" parameterType="map">
+        SELECT member_no,gender,age,company_name,department,job,position,worker_type
+        FROM member_info
+        WHERE member_no = #{member_no}
+    </select>
+
+
+    <resultMap type="WorkHour" id="WorkHourResultMap">
+        <id property="member_no" 		column="member_no"/>
+        <result property="year" 			column="year"/>
+        <result property="month" 	column="month"/>
+        <result property="date" 		column="date"/>
+        <result property="day_of_week" 		column="day_of_week"/>
+        <result property="work_time" 	column="work_time"/>
+    </resultMap>
+    <select id="selectWorkTime" resultMap="WorkHourResultMap" parameterType="map">
+        SELECT member_no, year, month, date, day_of_week, work_time
+        FROM workhour
+        WHERE member_no = #{member_no}
+    </select>
+
+
+
+
+
+    <!-- 근무시간: 요일별 -->
+    <resultMap type="week" id="weekResultMap">
+        <result property="week" 	column="week"/>
+        <result property="useDate" 	column="useDate"/>
+    </resultMap>
+    <select id="week" resultMap="weekResultMap">
+        SELECT day_of_week as week, sum(work_time)/count(day_of_week) as useDate
+        FROM workhour
+        WHERE member_no = #{member_no}
+        GROUP BY day_of_week
+    </select>
+
+    <!-- 근무시간: 월별 -->
+    <resultMap type="month" id="monthResultMap">
+        <result property="month" 	column="month"/>
+        <result property="useDate" 	column="useDate"/>
+    </resultMap>
+    <select id="month" resultMap="monthResultMap">
+        SELECT month, sum(work_time)/count(month) as useDate
+        FROM workhour
+
+        WHERE member_no = #{member_no}
+        GROUP BY month
+        ORDER BY month
+    </select>
+
+    <!-- 근무시간: 연간 -->
+    <resultMap type="year" id="yearResultMap">
+        <result property="year" 	column="year"/>
+        <result property="useDate" 	column="useDate"/>
+    </resultMap>
+    <select id="year" resultMap="yearResultMap">
+        SELECT year, sum(work_time)/count(year) as useDate
+        FROM workhour
+        WHERE member_no = #{member_no}
+        GROUP BY year
+        ORDER BY year
+    </select>
+
+    <insert id="timeload" parameterType="com.multi.mvc.my_page.model.vo.WorkHour" >
+        INSERT INTO workhour (member_no, year, month, date, day_of_week, work_time)
+        VALUES (#{member_no}, #{year}, #{month}, #{date}, #{day_of_week}, #{work_time})
+            ON DUPLICATE KEY UPDATE work_time = work_time + #{work_time}
+    </insert>
+
+
+</mapper>

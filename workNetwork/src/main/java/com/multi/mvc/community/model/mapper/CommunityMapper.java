@@ -20,4 +20,5 @@ public interface CommunityMapper {
 	List<Reply> replyList(Map<String, String> searchMap);
 	List<Reply> findMember(Map<String, String> searchMap);
 	int reply(Map<String, String> searchMap);
+
 }

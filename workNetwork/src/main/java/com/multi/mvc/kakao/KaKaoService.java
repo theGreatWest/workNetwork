@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.multi.mvc.member.model.service.MemberService;
 import com.multi.mvc.member.model.vo.Member;
-
+ 
 @Service
 public class KaKaoService {
 

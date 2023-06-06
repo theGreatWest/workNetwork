@@ -6,7 +6,7 @@ import lombok.Getter;
 public class PageInfo {
 	private int currentPage;
 	private int pageLimit;
-	private int listCount;
+	private int listCount; 
 	private int listLimit;	
 	
 	/**

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Community {
 	private int num;
-	private String department;
+	private String job;
 	private String title;
 	private String name;
 	private String create_date;

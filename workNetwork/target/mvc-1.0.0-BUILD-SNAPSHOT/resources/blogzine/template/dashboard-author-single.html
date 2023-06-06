@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Blogzine - Blog and Magazine Bootstrap 5 Theme</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Bootstrap based News, Magazine and Blog Theme">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../img/logo_new.png">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="../template/assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="../template/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="../template/assets/vendor/apexcharts/css/apexcharts.css">
+	<link rel="stylesheet" type="text/css" href="../template/assets/vendor/overlay-scrollbar/css/OverlayScrollbars.min.css">
+
+	<!-- Theme CSS -->
+	<link id="style-switch" rel="stylesheet" type="text/css" href="../template/assets/css/style.css">
+
+	<!-- theme stylesheet-->
+    <link rel="stylesheet" href="../bootstrap-5/html/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../bootstrap-5/html/css/custom.css">
+	<!-- Magnigic Popup-->
+    <link rel="stylesheet" href="../bootstrap-5/html/vendor/magnific-popup/magnific-popup.css">
+	<!-- Price Slider Stylesheets -->
+    <link rel="stylesheet" href="../bootstrap-5/html/vendor/nouislider/nouislider.css">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
+
+	<style>
+		a:hover{
+			text-decoration: none;
+			color: green;
+			font-size: 17px;
+		}
+		.tab:hover{
+			text-decoration: none;
+			color: green;
+			font-size: 17px;
+		}
+	</style>
+</head>
+
+<body>
+<!-- =======================
+Header START -->
+<!-- 네비게이션은 따로 수치 맞춰 줌 -->
+<header class="header" style="height: 70px; margin: 0px; padding: 0px;">
+	<!-- Navbar-->
+	<nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white"  style="height: 74px; margin: 0px; padding: 0px;">
+	  <div class="container-fluid">
+<!-- logo == workNetwork  -->
+<!-- 이 부분도 margin 수정해줌 -->
+		<div class="d-flex align-items-center" style="margin-left: -18px; margin-top: -2px;"><a class="navbar-brand py-1" href="index.html"><img src="../../img/logo_new3.png" style="margin-top: -5px; margin-bottom: -5px;" alt="workNetwork logo"></a>
+		</div>
+		<!-- Navbar Collapse -->
+		<div class="collapse navbar-collapse" id="navbarCollapse" style="margin-right: -10px; margin-top: -5px;">
+		  <ul class="navbar-nav ms-auto">
+			<li class="nav-item"><a class="nav-link" id="homeDropdownMenuLink" href="index.html" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 800;">
+			  나의 근무 시간</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="contact.html">
+			  커뮤니티</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" id="docsDropdownMenuLink" href="index.html" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 800;">
+			  뉴스</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" id="docsDropdownMenuLink" href="index.html" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: 800;">
+			  노동법 FAQ</a>
+			</li>
+			<!-- add a listening 항목 삭제 -->
+			<li class="nav-item"><a class="nav-link" href="login.html" style="font-weight: 800;">로그인</a></li>
+			<li class="nav-item"><a class="nav-link" href="signup.html" style="font-weight: 800;">회원가입</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+	<!-- /Navbar -->
+  </header>
+<!-- =======================
+Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+
+<!-- =======================
+Author single START -->
+<section class="pb-4">
+	<div class="container">
+		<div class="row g-4">
+
+			<div class="col-lg-8">
+				<!-- Chart START -->
+				<div class="card border h-100">
+					<!-- Card header -->
+					<div class="card-header p-3 border-bottom"  style=" background-color: rgb(149, 203, 149); border: 1px solid rgb(149, 203, 149);">
+						<h5 class="card-header-title mb-0" style="color: black; text-align: center; font-weight: 900;">개인 정보</h5>
+					</div>
+					
+					<!-- Card body -->
+					<div class="card-body">
+						<div class="d-sm-flex justify-content-sm-between align-items-center mb-4">
+							<!-- Avatar detail -->
+							<div class="d-flex align-items-center">
+								<!-- Avatar -->
+								<div class="avatar avatar-lg">
+									<img class="avatar-img rounded-circle border border-white border-3 shadow" src="../img/logo_icon3.png" alt="">
+								</div>
+								<!-- Info -->
+								<div class="ms-3">
+									<h5 class="mb-0">Youngju Kim</h5>
+									<p class="mb-0 small">분당서울대병원 영상의학과</p>
+								</div>
+							</div>
+							<!-- Tags -->
+							<div class="d-flex mt-2 mt-sm-0">
+								<!-- bg-danger == 빨간색 + bg-dribbble == 핑크색 + bg-facebook == 현대오일뱅크색 -->
+								<h6 class="bg-facebook py-2 px-3 text-white rounded">비정규근로자</h6>
+								<h6 class="bg-info py-2 px-3 text-white rounded ms-2">전문, 과학 및 기술 서비스업</h6>
+							</div>
+						</div>
+
+						<!-- Information START -->
+						<div class="row">
+							<!-- Information item -->
+							<div class="col-md-6">
+								<ul class="list-group list-group-borderless">
+                  <!-- 직급 -->
+									<li class="list-group-item">
+										<span>Position:</span>
+										<span class="h6 mb-0">신입</span>
+									</li>
+                  <!-- Full Name -->
+									<li class="list-group-item">
+										<span>Full Name:</span>
+										<span class="h6 mb-0">김영주</span>
+									</li>
+                  <!-- User Name -->
+									<li class="list-group-item">
+										<span>User Name:</span>
+										<span class="h6 mb-0">BD_kyj</span>
+									</li>
+								</ul>
+							</div>
+
+							<!-- Information item -->
+							<div class="col-md-6">
+								<ul class="list-group list-group-borderless">
+                  <!-- Email ID -->
+									<li class="list-group-item">
+										<span>Email ID:</span>
+										<span class="h6 mb-0">youngjukim@bd.team3.com</span>
+									</li>
+                  <!-- Mobile Number -->
+									<li class="list-group-item">
+										<span>Mobile Number:</span>
+										<span class="h6 mb-0">010-7720-0102</span>
+									</li>
+                  <!-- Joining Date -->
+									<li class="list-group-item">
+										<span>Joining Date:</span>
+										<span class="h6 mb-0">2023-05-01</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Chart END -->
+			</div>
+
+			<div class="col-md-6 col-lg-4">
+				<!-- Popular blog START -->
+				<div class="card border h-100">
+					<!-- Card header -->
+					<div class="card-header border-bottom p-3">
+						<h5 class="card-header-title mb-0" style="text-align: center;">HOT LINK</h5>
+					</div>
+
+					<!-- Card body START -->
+					<div class="card-body p-3">
+
+						<div class="row">
+							<!-- Blog item -->
+							<div class="col-12" style="margin-top: 15px; margin-bottom: 15px;">
+								<div class="d-flex align-items-center position-relative" >
+										<img class="w-60 rounded" src="../img/person.png" alt="product">
+									<div class="ms-3">
+										<a href="#" class="h6 stretched-link">회원정보 수정 및 탈퇴</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Divider -->
+							<hr class="my-3">
+
+							<!-- Blog item -->
+							<div class="col-12" style="margin-top: 15px;">
+								<div class="d-flex align-items-center position-relative">
+										<img class="w-60 rounded" src="../img/holiday.png" alt="product">
+									<div class="ms-3">
+										<a href="#" class="h6 stretched-link">휴가 신청서 제출 및 승인 여부 확인</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<!-- Card body END -->
+
+				</div>
+				<!-- Popular blog END -->
+			</div>
+
+      <div class="col-md-6 col-lg-4">
+				<!-- Recent comment START -->
+				<div class="card border h-100">
+					<!-- Card header -->
+					<div class="card-header border-bottom p-3">
+						<h5 class="card-header-title mb-0" style="text-align: center;">Tab</h5>
+					</div>
+
+					<!-- Card body START -->
+					<div class="card-body p-3">
+
+						<div class="row">
+							<!-- Comment item -->
+							<div class="col-12">
+								<div class="d-flex align-items-center position-relative">
+									<!-- Avatar -->
+									<div class="avatar avatar-lg flex-shrink-0">
+										<img class="avatar-img rounded-2" src="../img/week.png" style="width: 55px; height: 55px;" alt="avatar">
+									</div>
+									<!-- Info -->
+									<div class="ms-3">
+										<a class="h6 stretched-link" href="#"> 주간 근무시간</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Divider -->
+							<hr class="my-3">
+
+							<!-- Comment item -->
+							<div class="col-12">
+								<div class="d-flex align-items-center position-relative">
+									<!-- Avatar -->
+									<div class="avatar avatar-lg flex-shrink-0">
+										<img class="avatar-img rounded-2" src="../img/year.png" alt="avatar"  style="width: 55px; height: 55px;">
+									</div>
+									<!-- Info -->
+									<div class="ms-3">
+										<a class="h6 stretched-link" href="#"> 연간 근무시간 </a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Divider -->
+							<hr class="my-3">
+
+							<!-- Comment item -->
+							<div class="col-12">
+								<div class="d-flex align-items-center position-relative">
+									<!-- Avatar -->
+									<div class="avatar avatar-lg flex-shrink-0">
+										<img class="avatar-img rounded-2" src="../img/add_alert.png" alt="avatar"  style="width: 58px; height: 58px;">
+									</div>
+									<!-- Info -->
+									<div class="ms-3">
+										<a class="h6 stretched-link" href="#"> 월별 연장 근무시간 </a>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Divider -->
+							<hr class="my-3">
+							
+						</div>
+					</div>
+					<!-- Card body END -->
+				</div>
+				<!-- Recent comment END -->
+			</div>
+
+<!-- 차트 -->
+			<div class="col-lg-8">
+				<!-- Chart START -->
+				<div class="card border h-100" style="width: 700px; height: 700px; border: 3px solid rgb(115, 205, 115);">
+					<!-- Card header -->
+					<div class="card-header p-3 border-bottom" style="background-color: rgb(68, 116, 65);">
+						<h5 class="card-header-title mb-0" id="graph_title" style="text-align: center; color: white;">주간 평균 근무시간</h5>
+					</div>
+					<!-- Card body -->
+					<div class="card-body">
+            <!-- Apex chart -->
+            			<div id="apexChartTrafficStats" id="graph_value" class="mt-2"></div>
+					</div>
+				</div>
+				<!-- Chart END -->
+			</div>
+<!-- /차트 끝 -->
+			
+		</div>
+	</div>
+</section>
+<!-- =======================
+Main contain END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- 푸터 수정 후 -->
+    <!-- Footer-->
+    <footer class="position-relative z-index-10 d-print-none" style="margin-top: 40px;">
+		<!-- Main block - menus, subscribe form-->
+		<div class="py-6 bg-gray-200 text-muted"> 
+			<div class="container">
+				<div class="row" style="height:100px; padding: 0px; margin-top: -40px;">
+					<div class="col-lg-4 mb-5 mb-lg-0">
+						<div class="fw-bold text-uppercase text-dark mb-3">workNetwork</div>
+						<p><img src="../../img/mail.png" style="width: 20px; height: 20px;"> &nbsp;workNetwork@bd.team3.com</img></p>
+						<p style="margin-top: -10px;"><img src="../../img/phone.png" style="width: 20px; height: 20px;"> &nbsp;(02) 1251-0683</img></p>
+					</div>
+					<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+						<h6 class="text-uppercase text-dark mb-3">Quick Links</h6>
+						<ul class="list-unstyled">
+						<li><a class="text-muted" href="index.html">나의 근무 시간</a></li>
+						<li><a class="text-muted" href="category-rooms.html">커뮤니티</a></li>
+						<li><a class="text-muted" href="category-2-rooms.html">뉴스</a></li>
+						<li><a class="text-muted" href="category-3-rooms.html">노동법 FAQ</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+						<h6 class="text-uppercase text-dark mb-3">Team Member</h6>
+						<ul class="list-unstyled">
+						<li><a class="text-muted">김영주                                   </a></li>
+						<li><a class="text-muted">김하영                                   </a></li>
+						<li><a class="text-muted">백진욱                                   </a></li>
+						<li><a class="text-muted">이광호                                   </a></li>
+						</ul>
+					</div>
+					<div class="col-lg-4">
+						<h6 class="text-uppercase text-dark mb-3">workNetwork를 구독하세요</h6>
+						<p class="mb-3"> 새롭게 업데이트 되는 소식을 놓치지 마세요</p>
+						<form action="#" id="newsletter-form">
+							<div class="input-group mb-3">
+								<input class="form-control bg-transparent border-dark border-end-0" type="email" placeholder="Your Email Address" aria-label="Your Email Address">
+								<button class="btn btn-outline-dark border-start-0" type="submit"> <i class="fa fa-paper-plane text-lg"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Copyright section of the footer-->
+		<div class="py-4 fw-light bg-gray-800 text-gray-300">
+			<div class="container">
+				<div class="row align-items-end"  style="text-align: right;">
+					<p class="text-sm mb-md-0">&copy; 2023, WNW company.  All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+<!-- =======================
+Footer END -->
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short"></i></div>
+
+<!-- =======================
+JS libraries, plugins and custom scripts -->
+
+<!-- Bootstrap JS -->
+<script src="../template/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="../template/assets/vendor/apexcharts/js/apexcharts.js"></script>
+<script src="../template/assets/vendor/overlay-scrollbar/js/OverlayScrollbars.min.js"></script>
+
+<!-- Template Functions -->
+<script src="../template/assets/js/functions.js"></script>
+
+</body>
+</html>

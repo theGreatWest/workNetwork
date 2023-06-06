@@ -61,4 +61,5 @@ public class CommunityService {
 	public int reply(Map<String, String> searchMap) {
 		return mapper.reply(searchMap);
 	}
+
 }

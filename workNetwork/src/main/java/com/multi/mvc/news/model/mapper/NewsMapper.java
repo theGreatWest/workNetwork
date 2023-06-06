@@ -1,5 +1,5 @@
 package com.multi.mvc.news.model.mapper;
-
+ 
 import java.util.List;
 import java.util.Map;
 

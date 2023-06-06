@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 //3. 인터셉터 : 필터의 Spring 버전으로 특정 URL 패턴을 통해 흐름제어하는 방법. AOP와 다르게 URL 제어가 필요할때
 
 //@Intercepts(value = )
-@Slf4j
+@Slf4j 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 	
 	// preHandle : 대상 컨트롤러가 실행되기 이전에 호출되는 메소드

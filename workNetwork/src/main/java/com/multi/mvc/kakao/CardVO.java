@@ -2,7 +2,7 @@ package com.multi.mvc.kakao;
 
 import lombok.Data;
 
-@Data
+@Data 
 public class CardVO {
 	private String purchase_corp, purchase_corp_code;
 	private String issuer_corp, issuer_corp_code;

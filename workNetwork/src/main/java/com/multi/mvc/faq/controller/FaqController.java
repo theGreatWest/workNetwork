@@ -28,7 +28,6 @@ public class FaqController {
 	// faq_post : 초기화면
 	@GetMapping("/workNetwork/faq_post")
 	public String faqPost(Model model, @RequestParam Map<String, String> param) {
-		
 		return "workNetwork/faq_post";
 	}
 }

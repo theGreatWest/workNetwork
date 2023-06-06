@@ -3,7 +3,7 @@ package com.multi.mvc.kakao;
 import java.util.Date;
 
 import lombok.Data;
-
+ 
 @Data
 public class KakaoPayApprovalVO {
 

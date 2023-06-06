@@ -21,7 +21,6 @@ public class QrcheckController {
 	// qrcheck : 초기화면
 	@GetMapping("/workNetwork/qr_check")
 	public String qr(Model model, @RequestParam Map<String, String> param) {
-
 		return "workNetwork/qr_check";
 	}
 }
