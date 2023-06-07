@@ -1,0 +1,11 @@
+member_no,id,password,name,email,address,status,sign up date,phone_number
+1,hufs2018,0,lee,lee@gmail.com,서울,휴면,2023.05.05,010-0000-0000
+2,hufs2017,1,kim,kim@gmail.com,서울,활성,2023.05.02,010-1111-1111
+3,hufs2019,2222,park,park@gmail.com,강원,활성,2022.07.03,010-2222-2222
+4,hufs2020,2223,kang,kang@gmail.com,부산,활성,2022.07.04,010-4444-4444
+5,hufs2021,2224,seo,seo@gmail.com,인천,활성,2023.06.02,010-5555-5555
+6,hufs2022,2225,hwang,hwang@gmail.com,광주,활성,2023.04.02,010-6666-6666
+7,hufs2023,2226,jeon,jeon@gmail.com,대전,활성,2023.02.01,010-7777-7777
+8,hufs2024,2227,cha,cha@gmail.com,제주,활성,2022.11.12,010-8888-8888
+9,hufs2025,2228,han,han@gmail.com,강원,활성,2023.01.03,010-3333-3333
+10,hufs2026,2229,you,you@gmail.com,서울,활성,2023.03.03,010-9999-9999
