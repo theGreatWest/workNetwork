@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.multi.mvc.community.model.mapper.CommunityMapper">
+	<resultMap type="CommunityList" id="CommunityListResultMap">
+		<result property="job" 	column="job"/>
+		<result property="title" 		column="title"/>
+		<result property="content" 		column="content"/>
+		<result property="name" 		column="name"/>
+		<result property="create_date" 	column="create_date"/>
+		<result property="views" 		column="views"/>
+		<result property="board_no" 		column="board_no"/>
+		<result property="count" 		column="count"/>
+	</resultMap>
+	<resultMap type="Reply" id="ReplyListResultMap">
+		<result property="content" 		column="content"/>
+		<result property="name" 		column="name"/>
+		<result property="create_date" 	column="create_date"/>
+	</resultMap>
+	
+<!-- 커뮤니티 리스트 -->
+	<select id="communityList" resultMap="CommunityListResultMap" parameterType="map">
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
+		FROM community b
+		INNER JOIN member m
+		ON m.member_no = b.member_no
+		INNER JOIN member_info mi
+		ON m.member_no = mi.member_no
+		WHERE b.status='공개'
+		<if test="communityDepartment != null">
+			AND mi.job = '${communityDepartment}'
+		</if> 
+		<if test="communityTitle != null">
+			AND b.title LIKE '%${communityTitle}%'
+		</if> 
+		ORDER BY create_date DESC
+		LIMIT ${limit} OFFSET ${offset}
+	</select>
+	
+<!-- 커뮤니티 리스트: 검색 -->
+	<select id="searchList" resultMap="CommunityListResultMap" parameterType="map">
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
+		FROM community b
+		INNER JOIN member m
+		ON m.member_no = b.member_no
+		INNER JOIN member_info mi
+		ON m.member_no = mi.member_no
+		WHERE b.status='공개'
+		<if test="communityDepartment != null">
+			AND mi.job = '${communityDepartment}'
+		</if> 
+		<if test="communityTitle != null">
+			AND b.title LIKE '%${communityTitle}%'
+		</if> 
+		ORDER BY create_date DESC
+		LIMIT ${limit} OFFSET ${offset}
+	</select>
+	
+<!-- 커뮤니티 리스트: 검색 개수 -->
+	<select id="searchListCount" resultMap="CommunityListResultMap" parameterType="map">
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
+		FROM community b
+		INNER JOIN member m
+		ON m.member_no = b.member_no
+		INNER JOIN member_info mi
+		ON m.member_no = mi.member_no
+		WHERE b.status='공개'
+		<if test="communityDepartment != null">
+			AND mi.job = '${communityDepartment}'
+		</if> 
+		<if test="communityTitle != null">
+			AND b.title LIKE '%${communityTitle}%'
+		</if> 
+		ORDER BY create_date DESC
+	</select>
+	
+<!-- 커뮤니티 개수 -->
+	<select id="communityListCount" resultMap="CommunityListResultMap">
+		SELECT mi.job, b.title, b.content, m.name, b.create_date, b.views , board_no
+		FROM community b
+		INNER JOIN member m
+		ON m.member_no = b.member_no
+		INNER JOIN member_info mi
+		ON m.member_no = mi.member_no
+		WHERE b.status='공개'
+		ORDER BY create_date DESC
+	</select>
+	
+<!-- 커뮤니티 조회수 수정 -->
+	<update id="update" parameterType="map">
+		UPDATE community
+		SET views = '${views}'
+		WHERE board_no='${board_no}';
+	</update>
+	
+<!-- 커뮤니티 : 글쓰기 -->
+	<insert id="post" parameterType="map">
+		INSERT INTO 
+			community 
+		VALUES (
+			NULL, ${member_no}, '${title}', '${content}', '${views}', '${create_date}', '${status}', '${original_filename}', '${renameed_filename}'
+		)
+	</insert>
+	
+<!-- 커뮤니티 : 댓글 count -->
+	<select id="replyCount" resultMap="CommunityListResultMap" parameterType="map">
+		SELECT count(*) as count
+		FROM reply 
+		WHERE board_no='${board_no}'
+	</select>
+	
+<!-- 커뮤니티 : 댓글 목록 -->
+	<select id="replyList" resultMap="ReplyListResultMap" parameterType="map">
+		SELECT m.name, r.create_date, r.content
+		FROM reply r INNER JOIN member m 
+		ON m.member_no = r.member_no 
+		WHERE board_no='${board_no}' 
+		ORDER BY r.create_date DESC
+	</select>
+	
+<!-- 커뮤니티 : 댓글 insert -->
+	<insert id="reply" parameterType="map">
+		INSERT INTO reply 
+		VALUES(NULL, '${board_no}', '${member_no}', '${reply}','${create_date}','공개')
+	</insert>
+
+</mapper>
