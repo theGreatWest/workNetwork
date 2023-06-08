@@ -13,4 +13,5 @@ public class Community {
 	private String title;
 	private String name;
 	private String create_date;
+	private String department;
 }

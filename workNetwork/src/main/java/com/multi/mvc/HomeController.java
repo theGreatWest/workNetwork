@@ -46,7 +46,9 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		Integer member_no = (Integer) session.getAttribute("member_no");
-
+		
+		System.out.println("\n"+member_no+"\n");
+		
 // 뉴스 기사 모아보기 
 		List<News> newsList = service.select5News();
 		List<Integer> compSame = new ArrayList<Integer>();

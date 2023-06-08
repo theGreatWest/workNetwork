@@ -22,13 +22,21 @@
               <div class="row">
                 <div class="col-lg-3 d-flex align-items-center form-group no-divider" style="border-right: 2px solid rgb(186, 186, 186);">
                       <!-- article 사이트 목록 -->
-                      <select class="selectpicker form-control" id="community_department" name="community_department" title="department" data-style="btn-form-control">
-                        <option value="제조">제조</option>
-                        <option value="교육">교육</option>
-                        <option value="건설">건설</option>
-                        <option value="정보통신">정보통신</option>
-                        <option value="보건">보건</option>
-                        <option value="과학기술">과학기술</option>
+                      <select class="selectpicker form-control" id="community_department" name="community_department" title="job" data-style="btn-form-control">
+                          <option value="강사">강사</option>
+                          <option value="제조업">제조업</option>
+                          <option value="건설업">건설업</option>
+                          <option value="도매 및 소매업">도매 및 소매업</option>
+                          <option value="운수 및 창고업">운수 및 창고업</option>
+                          <option value="숙박 및 음식업">숙박 및 음식업</option>
+                          <option value="정보통신업">정보통신업</option>
+                          <option value="금융 및 보험업">금융 및 보험업</option>
+                          <option value="전문, 과학 및 기술 서비스업">전문, 과학 및 기술 서비스업</option>
+                          <option value="사업시설 관리, 사업 지원 및 임대 서비스업">사업시설 관리, 사업 지원 및 임대 서비스업</option>
+                          <option value="공공 행정, 국방 및 사회보장 행정">공공 행정, 국방 및 사회보장 행정</option>
+                          <option value="교육 서비스업">교육 서비스업</option>
+                          <option value="보건업 및 사회복지 서비스업">보건업 및 사회복지 서비스업</option>
+                          <option value="기타" selected>기타</option>
                       </select>
                     </div>
                     <!-- 타이틀 검색 -->
@@ -51,7 +59,20 @@
           <ul class="pagination justify-content-between mb-5" style="text-align: right;" >
             <li class="page-item"></li>
             <li class="page-item"><p class="mb-3 mb-md-0" style="font-size: 20px;"><strong>${count}</strong> results found</p></li>
-            <a class="page-link text-sm rounded" tabindex="-1" href="${path}/workNetwork/write" style="color: green;">글쓰기</a></li>
+              <% Integer member_no = (Integer) request.getSession().getAttribute("member_no"); %>
+
+              <% if (member_no != null) { %>
+                <a class="page-link text-sm rounded" href="${path}/workNetwork/write" style="color: green";>글쓰기</a>
+              <% } else { %>
+                <a class="page-link text-sm rounded" href="${path}/workNetwork/login" style="color: green;" onclick="checkLogin()">글쓰기</a>
+              <script>
+                  function checkLogin() {
+                      alert("로그인이 필요합니다."); // Display the alert message
+                  }
+              </script>
+              <% } %>
+
+
           </ul>
         </nav>
         <div class="row mb-5"  style="margin-top: 70px;">
@@ -63,8 +84,8 @@
 				          <div class="col-lg-4 col-sm-6 mb-4 hover-animate">
 				            <div class="card shadow border-0 h-100">
 				              <div class="card-body">
-				                <a class="text-uppercase text-muted text-sm letter-spacing-2" href="${path}/workNetwork/show?department=${postV.department}&title=${postV.title}&content=${postV.content}&name=${postV.name}&create_date=${postV.create_date}&views=${postV.views}&board_no=${postV.board_no}">${postV.department} </a>
-				                <h5 class="my-2"><a class="text-dark" href="${path}/workNetwork/show?department=${postV.department}&title=${postV.title}&content=${postV.content}&name=${postV.name}&create_date=${postV.create_date}&views=${postV.views}&board_no=${postV.board_no}">${postV.title}          </a></h5>
+				                <a class="text-uppercase text-muted text-sm letter-spacing-2" href="${path}/workNetwork/show?job=${postV.job}&title=${postV.title}&content=${postV.content}&name=${postV.name}&create_date=${postV.create_date}&views=${postV.views}&board_no=${postV.board_no}">${postV.job} </a>
+				                <h5 class="my-2"><a class="text-dark" href="${path}/workNetwork/show?job=${postV.job}&title=${postV.title}&content=${postV.content}&name=${postV.name}&create_date=${postV.create_date}&views=${postV.views}&board_no=${postV.board_no}">${postV.title}          </a></h5>
 				                <div class="text-sm my-3" style="text-align: right; color: green;"><i class="far fa-clock me-2"></i>${postV.create_date}</div>
 				              </div>
 				            </div>

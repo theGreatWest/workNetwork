@@ -193,12 +193,12 @@
                   options: {
                     scales: {
                       y: {
-                        beginAtZero: false,
-                        /* max : 15,
+                        beginAtZero: true,
+                        max : 15,
                         min : 5,
 	                   	 ticks: {
 	   						stepSize : 1
-	   					 } */
+	   					 }
                       }
                     }
                   }
@@ -219,11 +219,11 @@
                     scales: {
                       y: {
                         beginAtZero: false,
-                        /* max: 14,
+                        max: 14,
                         min: 8,
 	                   	 ticks: {
 	   						stepSize : 1
-	   					 } */
+	   					 }
                       }
                     }
                   }
@@ -244,11 +244,11 @@
                     scales: {
                       y: {
                         beginAtZero: false,
-                        /* max: 14,
+                        max: 14,
                         min: 7,
 	                   	 ticks: {
 	   						stepSize : 1
-	   					 } */
+	   					 }
                       }
                     }
                   }
@@ -298,7 +298,7 @@
               </div>
             </div>
               <% } else { %>
-              <h5 style="color: black; text-align: left; font-weight: 900; font-size: 22px; color: rgb(235, 74, 49);">나의 근무시간은 로그인 후 확인하실 수 있습니다.</h5>
+              <h5 style="color: black; text-align: left; font-weight: 900;">나의 근무시간은 로그인 후 확인하실 수 있습니다.</h5>
 
               <% } %>
           </div>
@@ -576,7 +576,7 @@
             <p class="subtitle " style="color:green; font-size: 20px;">HOT</p>
             <h2 class="mb-md-0" style="font-size: 35px; width: 130%;">노동법 FAQ</h2>
           </div>
-          <div class="col-md-2" style="display: inline-block; text-align: right; margin-bottom: 32px;"><a class="text-muted text-sm" href="${path}/workNetwork/searchFaq">list<i class="fas fa-angle-double-right ms-2"></i></a></div>
+          <div class="col-md-2" style="display: inline-block; text-align: right; margin-bottom: 32px;"><a class="text-muted text-sm" href="${path}/workNetwork/faq">list<i class="fas fa-angle-double-right ms-2"></i></a></div>
           <div style="background-color: white; width: 100%; border-radius: 10px; height: 350px; box-shadow: 0 0 15px #bcbcbc;">
             <div style="width: 100%; overflow: auto;"><table style="width: 100%; white-space: nowrap;">
               <thead style="text-align: center;">
