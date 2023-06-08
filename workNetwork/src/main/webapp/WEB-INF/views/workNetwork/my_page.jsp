@@ -88,7 +88,7 @@
                   <!-- Joining Date -->
 									<li class="list-group-item">
 										<span style="font-size: 18px;">Joining Date:</span>
-										<span class="h6 mb-0" style="font-size: 18px;"><%=member.getSignupDate()%></span>
+										<span class="h6 mb-0" style="font-size: 18px;"><%=member.getSign_up_date()%></span>
 									</li>
 								</ul>
 							</div>

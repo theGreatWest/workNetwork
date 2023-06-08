@@ -12,7 +12,7 @@
         <result property="phone_number" 	column="phone_number"/>
         <result property="address" 			column="address"/>
         <result property="status" 			column="status"/>
-        <result property="signupDate" 			column="sign up date"/>
+        <result property="sign_up_date" 			column="sign_up_date"/>
     </resultMap>
     <select id="selectMember" resultMap="MemberResultMap" parameterType="map">
         SELECT *
@@ -98,6 +98,12 @@
         INSERT INTO workhour (member_no, year, month, date, day_of_week, work_time)
         VALUES (#{member_no}, #{year}, #{month}, #{date}, #{day_of_week}, #{work_time})
             ON DUPLICATE KEY UPDATE work_time = work_time + #{work_time}
+    </insert>
+    
+    <insert id="insertWorkType" parameterType="map">
+	    INSERT INTO workhour (member_no, year, month, date, day_of_week, work_time)
+	    VALUES (#{member_no}, #{year}, #{month}, #{date}, #{day_of_week}, #{work_time})
+	    ON DUPLICATE KEY UPDATE work_time = work_time + #{work_time}
     </insert>
 
 

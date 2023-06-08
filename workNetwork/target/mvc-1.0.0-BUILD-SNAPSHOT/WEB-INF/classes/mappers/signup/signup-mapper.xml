@@ -4,8 +4,8 @@
 
 <mapper namespace="com.multi.mvc.signup.model.mapper.SignupMapper">
     <insert id="insertMember" parameterType="com.multi.mvc.signup.model.vo.SignupMember" >
-        INSERT INTO member (member_no, id, password, name, email, phone_number, address, status)
-        VALUES (#{member_no}, #{id}, #{password}, #{name}, #{email}, #{phone_number}, null, "활성")
+        INSERT INTO member (member_no, id, password, name, email, phone_number, address, status,sign_up_date)
+        VALUES (#{member_no}, #{id}, #{password}, #{name}, #{email}, #{phone_number}, null, "활성", #{sign_up_date})
     </insert>
     <insert id="insertMemberInfo" parameterType="com.multi.mvc.signup.model.vo.Member_info">
         INSERT INTO member_info (member_no, gender, department, age, company_name, job, position, worker_type)

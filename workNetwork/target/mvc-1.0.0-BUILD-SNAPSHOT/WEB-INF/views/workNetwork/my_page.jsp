@@ -88,7 +88,7 @@
                   <!-- Joining Date -->
 									<li class="list-group-item">
 										<span style="font-size: 18px;">Joining Date:</span>
-										<span class="h6 mb-0" style="font-size: 18px;"><%=member.getSignupDate()%></span>
+										<span class="h6 mb-0" style="font-size: 18px;"><%=member.getSign_up_date()%></span>
 									</li>
 								</ul>
 							</div>
@@ -140,6 +140,17 @@
 
 								document.getElementById('time_').style.color="black";
 								var lastTime = document.getElementById('time_').innerText;
+								/* alert(lastTime); */ /* 퇴근 처리 후 최종 근무 시간을 담고 있는 변수 */
+								
+								/* $.ajax({
+									  url: "${path}/workNetwork/my_page2", // 컨트롤러의 요청 URL
+									  method: "GET", // 전송 방식 (POST 또는 GET)
+									  data: {"lastTime": lastTime}, // 전송할 데이터 (변수 이름과 값)
+									  success: function(response) {
+									  },
+									  error: function(xhr, status, error) {
+									  }
+									}); */
 
 								// Send an AJAX request to the server endpoint
 								var xhr = new XMLHttpRequest();
@@ -148,8 +159,6 @@
 
 								xhr.onreadystatechange = function() {
 									if (xhr.readyState === 4 && xhr.status === 200) {
-										// Request successfully completed
-										// You can perform additional actions here if needed
 									}
 								};
 
@@ -290,8 +299,12 @@
 							<!-- Divider -->
 							<hr class="my-3">
 
-
-
+							<!-- Comment item -->
+							<div class="col-12">
+								<div class="d-flex align-items-center position-relative">
+									<a href="http://kodaa.or.kr/16/?idx=6215364&bmode=view"><img class="avatar-img rounded-2" src="${path}/resources/img/adv1.png" alt="avatar"  style="width: 100%; height: 100%;"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- Card body END -->
@@ -327,7 +340,7 @@
 						options: {
 							scales: {
 							y: {
-								beginAtZero: true
+								beginAtZero: false
 							}
 							}
 						}
@@ -347,7 +360,7 @@
 						options: {
 							scales: {
 							y: {
-								beginAtZero: true
+								beginAtZero: false
 							}
 							}
 						}
@@ -367,7 +380,7 @@
 						options: {
 							scales: {
 							y: {
-								beginAtZero: true
+								beginAtZero: false
 							}
 							}
 						}
